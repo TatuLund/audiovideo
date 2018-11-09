@@ -19,4 +19,6 @@ public interface GwtVideoServerRpc extends ServerRpc {
     public void mediaPaused();
 
     public void mediaStarted();
+    
+    public void mediaSeeked();
 }

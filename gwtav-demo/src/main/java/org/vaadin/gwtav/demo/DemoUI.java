@@ -70,8 +70,8 @@ public class DemoUI extends UI
         layout.addComponent(video);
         layout.setComponentAlignment(video, Alignment.MIDDLE_CENTER);
         // Replace valid file here
-        File videoFile = new File("C:/Users/Tatu/test.mp4");        
-//        File videoFile = new File("C:/Users/Tatu/big_buck_bunny.mp4");        
+//        File videoFile = new File("C:/Users/Tatu/test.mp4");        
+        File videoFile = new File("C:/Users/Tatu/big_buck_bunny.mp4");        
         if (videoFile != null) { 
         	FileResource videoResource = new FileResource(videoFile);
         	video.setSource(videoResource);
@@ -149,6 +149,10 @@ public class DemoUI extends UI
         	Notification.show("Video started");
         });
 
+        video.addMediaSeekedListener(event -> {
+        	posLabel.setValue("Position: "+video.getPosition()+"/"+video.getVideoLength());        	
+        });
+        
         video.addMetadataLoadedListener(event -> {
         	slider.setMax(video.getVideoLength());
         	Notification.show("Video ready - Length: "+video.getVideoLength()+"s Width: "+video.getVideoWidth()+"px Height: "+video.getVideoHeight()+"px");
@@ -253,6 +257,10 @@ public class DemoUI extends UI
         controls.setCaption("Controls");
         layout.addComponent(controls);
         layout.setComponentAlignment(controls, Alignment.MIDDLE_CENTER);       
+        
+        audio.addMediaSeekedListener(event -> {
+        	posLabel.setValue("Position: "+audio.getPosition()+"/"+audio.getAudioLength());        	
+        });
         
         audio.addMetadataLoadedListener(event -> {
         	slider.setMax(audio.getAudioLength());

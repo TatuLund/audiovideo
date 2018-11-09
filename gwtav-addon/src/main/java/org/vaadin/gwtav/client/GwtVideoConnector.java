@@ -145,4 +145,10 @@ public class GwtVideoConnector extends MediaBaseConnector {
 	public void videoStarted() {
 		getRpc().mediaStarted();		
 	}
+
+	public void videoSeeked() {
+		getRpc().reportPosition(getWidget().getPosition());
+		getRpc().mediaSeeked();
+	}
+	
 }

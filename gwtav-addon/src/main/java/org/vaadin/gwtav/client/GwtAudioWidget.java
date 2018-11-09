@@ -29,6 +29,7 @@ public class GwtAudioWidget extends VMediaBase {
             addEndEventListener(getElement());
             addPlayEventListener(getElement());
             addPauseEventListener(getElement());
+            addSeekedEventListener(getElement());
     	} else {
     		VConsole.log("Audio cannot be created");
     	}
@@ -110,6 +111,15 @@ public class GwtAudioWidget extends VMediaBase {
 
     }-*/;
     
+    private native void addSeekedEventListener(Element el)
+    /*-{
+              var self = this;
+              el.addEventListener('seeked', $entry(function(e) {
+                  self.@org.vaadin.gwtav.client.GwtAudioWidget::audioSeeked()();
+              }), false);
+
+    }-*/;    
+    
     private void audioEnded() {
     	connector.audioEnded();
     }
@@ -121,10 +131,11 @@ public class GwtAudioWidget extends VMediaBase {
     private void audioPaused() {
     	connector.audioPaused();
     }    
-    /**
-     * Updates the dimensions of the widget.
-     *
-     */
+
+    private void audioSeeked() {
+    	connector.audioSeeked();
+    }
+            
     private void updateInitialData() {
         // Send relevant metadata also to server
         connector.sendInitialData();

@@ -92,6 +92,11 @@ public class GwtAudio extends AbstractAudioVideo {
 				initialPosition = initialPos;
 				fireEvent(new MetadataLoadedEvent(component));
 			}
+
+			@Override
+			public void mediaSeeked() {
+				fireEvent(new MediaSeekedEvent(component));				
+			}
         	
         });
         

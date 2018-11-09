@@ -26,6 +26,7 @@ public class GwtVideoWidget extends VMediaBase {
             addEndEventListener(getElement());
             addPlayEventListener(getElement());
             addPauseEventListener(getElement());
+            addSeekedEventListener(getElement());
     	} else {
     		VConsole.log("Video cannot be created");
     	}
@@ -129,6 +130,14 @@ public class GwtVideoWidget extends VMediaBase {
 
     }-*/;
     
+    private native void addSeekedEventListener(Element el)
+    /*-{
+              var self = this;
+              el.addEventListener('seeked', $entry(function(e) {
+                  self.@org.vaadin.gwtav.client.GwtVideoWidget::videoSeeked()();
+              }), false);
+
+    }-*/;    
     
     private void videoEnded() {
     	connector.videoEnded();
@@ -142,7 +151,10 @@ public class GwtVideoWidget extends VMediaBase {
     	connector.videoPaused();
     }
     
-    
+    private void videoSeeked() {
+    	connector.videoSeeked();
+    }
+        
     /**
      * Updates the dimensions of the widget.
      *

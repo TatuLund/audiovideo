@@ -20,4 +20,5 @@ public interface GwtAudioServerRpc extends ServerRpc {
 
 	public void mediaPaused();
 
+    public void mediaSeeked();
 }

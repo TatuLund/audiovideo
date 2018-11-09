@@ -93,6 +93,13 @@ public class IOUtil {
                 }
             } catch (EOFException ignore) {
             	// Swallow
+            } catch (IOException e) {
+            	String name = e.getCause().getClass().getSimpleName();
+            	if (name.equals("ClientAbortException")) {
+            		// Swallow
+            	} else {
+            		throw e;
+            	}
             } finally {
             	tryToCloseStream(out);
             	tryToCloseStream(data);

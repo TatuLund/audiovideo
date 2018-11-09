@@ -86,6 +86,16 @@ public abstract class AbstractAudioVideo extends AbstractMedia {
 		return addListener(MediaPausedEvent.class, listener, MediaPausedListener.MEDIA_PAUSED_METHOD);
 	}
 
+	/**
+	 * Add a new MediaSeekedListener
+	 * The MediaSeekedEvent event is fired when user has changed position of the slider
+	 *  
+	 * @param listener A MediaSeekedListener to be added
+	 */
+	public Registration addMediaSeekedListener(MediaSeekedListener listener) {
+		return addListener(MediaSeekedEvent.class, listener, MediaSeekedListener.MEDIA_SEEKED_METHOD);
+	}
+
     @Override
     public boolean handleConnectorRequest(VaadinRequest request,
             VaadinResponse response, String path) throws IOException {
@@ -131,7 +141,7 @@ public abstract class AbstractAudioVideo extends AbstractMedia {
             session.unlock();
         }
 
-        response.setHeader("Accept-Ranges", "bytes");
+        if (stream.getParameter("Content-Length") != null) response.setHeader("Accept-Ranges", "bytes");
         IOUtil.writeResponse(request, response, stream, rangeStart, rangeEnd);
         return true;
     }

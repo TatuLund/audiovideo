@@ -141,4 +141,8 @@ public class GwtAudioConnector extends MediaBaseConnector {
 		getRpc().mediaStarted();		
 	}
 
+	public void audioSeeked() {
+		getRpc().reportPosition(getWidget().getPosition());
+		getRpc().mediaSeeked();
+	}
 }

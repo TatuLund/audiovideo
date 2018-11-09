@@ -96,6 +96,11 @@ public class GwtVideo extends AbstractAudioVideo {
 			public void mediaStarted() {
 				fireEvent(new MediaStartedEvent(component));				
 			}
+
+			@Override
+			public void mediaSeeked() {
+				fireEvent(new MediaSeekedEvent(component));				
+			}
         	
         });
         

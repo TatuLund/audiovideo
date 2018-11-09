@@ -48,6 +48,11 @@ Debugging client side code in the gwtav-demo project:
  
 ## Release notes
 
+### Version 1.2.0
+- Add support for MediaSeekedEvent
+- Report position to server always when new position is set by user
+- Small bugfixes in range request support
+
 ### Version 1.1.0
 - Add support for setPosition(..) to work correctly with ConnectorResources, see issue https://github.com/vaadin/framework/issues/1742 and https://github.com/vaadin/framework/issues/4266
 - Fixed stop() and pause() to report correct position

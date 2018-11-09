@@ -95,20 +95,6 @@ public class GwtAudioConnector extends MediaBaseConnector {
     public void onStateChanged(StateChangeEvent stateChangeEvent) {
         super.onStateChanged(stateChangeEvent);
 
-//        if (stateChangeEvent.hasPropertyChanged("resources")) {
-//        	String url = getResourceUrl(GwtAudioState.SOURCE_RESOURCE);
-//        	GwtAudioWidget widget = getWidget();
-//        	if (widget != null) {
-//        		widget.setUrl(url != null ? url : "");
-//        		String alt = getState().altText;
-//        		// Some browsers turn a null alt text into a literal "null"
-//        		widget.setAltText(alt != null ? alt : "");
-//        		if (getState().showControls) widget.setControls(true);
-//        	} else {
-//        		getRpc().notSupported();
-//        	}
-//        }
-        
         if (stateChangeEvent.hasPropertyChanged("reportingInterval")) {
         	if (timer != null) timer.cancel();
         	setTimer();

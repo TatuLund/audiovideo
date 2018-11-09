@@ -85,6 +85,8 @@ Contributions are welcome, but there are no guarantees that they are accepted as
 
 Add-on is distributed under Apache License 2.0. For license terms, see LICENSE.txt.
 
+Major pieces of development of this add-on has been sponsored by Support and Prime customers of Vaadin. See vaadin.com/support and Development on Demand for more details.
+
 AudioVideo is written by Tatu Lund
 
 # Developer Guide

@@ -5,7 +5,7 @@ for Vaadin Audio and Video components with more API features and events.
 
 ## Download release
 
-Official releases of this add-on are available at Vaadin Directory. For Maven instructions, download and reviews, go to https://vaadin.com/directory
+Official releases of this add-on are available at Vaadin Directory. For Maven instructions, download and reviews, go to https://vaadin.com/directory/component/audiovideo
 
 ## Building and running demo
 
@@ -48,6 +48,11 @@ Debugging client side code in the gwtav-demo project:
  
 ## Release notes
 
+### Version 1.1.0
+- Add support for setPosition(..) to work correctly with ConnectorResources, see issue https://github.com/vaadin/framework/issues/1742 and https://github.com/vaadin/framework/issues/4266
+- Fixed stop() and pause() to report correct position
+- Code refactoring
+
 ### Version 1.0
 - Initial release
 - GwtAudio, improved Audio component with additional API and events
@@ -79,28 +84,16 @@ AudioVideo is written by Tatu Lund
 
 # Developer Guide
 
-## Getting started
-
-Here is a simple example on how to try out the add-on component:
-
-<...>
-
-For a more comprehensive example, see src/test/java/org/vaadin/template/demo/DemoUI.java
-
 ## Features
 
-### Feature A
+### GwtAudio
 
-<...>
+Improved replacement for framework Audio component with additional API and Events
 
-### Feature B
+### GwtVideo
 
-<...>
-
-### Feature C
-
-<...>
+Improved replacement for framework Video component with additional API and Events
 
 ## API
 
-GwtVideo JavaDoc is available online at <...>
+GwtVideo JavaDoc is available online at https://vaadin.com/directory/component/audiovideo/api

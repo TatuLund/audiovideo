@@ -33,6 +33,7 @@ public class GwtAudioConnector extends MediaBaseConnector {
 			public void stop() {
 				getWidget().setPosition(0.0d);
 				getWidget().pause();
+				getRpc().reportPosition(getWidget().getPosition());
 			}
 
 			@Override
@@ -43,6 +44,12 @@ public class GwtAudioConnector extends MediaBaseConnector {
 			@Override
 			public void setVolume(double volume) {
 				getWidget().setVolume(volume);				
+			}
+
+			@Override
+			public void pause() {
+				getWidget().pause();
+				getRpc().reportPosition(getWidget().getPosition());
 			}
 
         });

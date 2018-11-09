@@ -70,12 +70,13 @@ public class DemoUI extends UI
         layout.addComponent(video);
         layout.setComponentAlignment(video, Alignment.MIDDLE_CENTER);
         // Replace valid file here
-        File videoFile = new File("C:/Users/Tatu/big_buck_bunny.mp4");        
+        File videoFile = new File("C:/Users/Tatu/test.mp4");        
+//        File videoFile = new File("C:/Users/Tatu/big_buck_bunny.mp4");        
         if (videoFile != null) { 
         	FileResource videoResource = new FileResource(videoFile);
-//        	video.setSource(videoResource);
+        	video.setSource(videoResource);
 //        	video.setSource(getStreamResource(videoFile,"video.mp4","video/mp4"));
-        	video.setSource("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+//        	video.setSource("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
         } else {
         	System.out.println("File not found");
         }
@@ -190,9 +191,9 @@ public class DemoUI extends UI
         File audioFile = new File("C:/Users/Tatu/test.mp3");        
         if (audioFile != null) { 
         	FileResource audioResource = new FileResource(audioFile);
-//        	audio.setSource(audioResource);
+        	audio.setSource(audioResource);
 //        	audio.setSource(getStreamResource(audioFile,"audio.mp3","audio/mpeg"));
-        	audio.setSource("http://file-examples.com/wp-content/uploads/2017/11/file_example_WAV_10MG.wav");
+//        	audio.setSource("http://file-examples.com/wp-content/uploads/2017/11/file_example_WAV_10MG.wav");
         } else {
         	System.out.println("File not found");
         }

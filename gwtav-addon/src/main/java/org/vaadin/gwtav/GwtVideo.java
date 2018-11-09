@@ -4,11 +4,8 @@ import org.vaadin.gwtav.client.GwtVideoClientRpc;
 import org.vaadin.gwtav.client.GwtVideoServerRpc;
 import org.vaadin.gwtav.client.GwtVideoState;
 
-import com.vaadin.server.ExternalResource;
 import com.vaadin.server.Resource;
-import com.vaadin.shared.Registration;
 import com.vaadin.shared.ui.PreloadMode;
-import com.vaadin.ui.AbstractMedia;
 
 /**
  * GwtVideo is an improved version of Video component with some additional API and Events
@@ -16,7 +13,7 @@ import com.vaadin.ui.AbstractMedia;
  * @author Tatu Lund
  */
 @SuppressWarnings("serial")
-public class GwtVideo extends AbstractMedia {
+public class GwtVideo extends AbstractAudioVideo {
 
 	private double position = 0.0d;
 	private double videoLength;
@@ -24,7 +21,7 @@ public class GwtVideo extends AbstractMedia {
 	private int videoWidth;
 	private int videoHeight;
 	private double volume = -1.0d;
-	
+
 	/**
 	 * Default constructor
 	 */
@@ -177,16 +174,6 @@ public class GwtVideo extends AbstractMedia {
     }
     
     /**
-     * A convenience method to set source of the media to be a url
-     *  
-     * @param url The url where the media is streamed from
-     */
-    public void setSource(String url) {
-    	ExternalResource resource = new ExternalResource(url);
-    	setSource(resource);
-    }
-    
-    /**
      * Set the new position
      * 
      * Note: This works only if the media is streamed from external url
@@ -214,6 +201,15 @@ public class GwtVideo extends AbstractMedia {
      */
     public void stop() {
     	getRpc().stop();
+    }
+    
+    /**
+     * Pause the playback. The position is reported back to server.
+     * 
+     * @see GwtVideo#getPosition()
+     */
+    public void pause() {
+    	getRpc().pause();
     }
     
     /**
@@ -254,46 +250,5 @@ public class GwtVideo extends AbstractMedia {
     private GwtVideoClientRpc getRpc() {
     	return getRpcProxy(GwtVideoClientRpc.class);
     }
-
-	/**
-	 * Add a new MetadataLoadedListener
-	 * The MetadataLoadedEvent event is fired when Metadata of the media has loaded and media is
-	 * ready to play
-	 *  
-	 * @param listener A MetadataLoadedListener to be added
-	 */
-	public Registration addMetadataLoadedListener(MetadataLoadedListener listener) {
-		return addListener(MetadataLoadedEvent.class, listener, MetadataLoadedListener.METADATA_LOADED_METHOD);
-	}
-	
-	/**
-	 * Add a new MediaEndedListener
-	 * The MediaEndedEvent event is fired when media playback is ended, i.e. media reaches its end
-	 *  
-	 * @param listener A MediaEndedListener to be added
-	 */
-	public Registration addMediaEndedListener(MediaEndedListener listener) {
-		return addListener(MediaEndedEvent.class, listener, MediaEndedListener.MEDIA_ENDED_METHOD);
-	}
-	
-	/**
-	 * Add a new MediaStartedListener
-	 * The MediaStartedEvent event is fired when media playback is started either by user or programmatically
-	 *  
-	 * @param listener A MediaStartedListener to be added
-	 */
-	public Registration addMediaStartedListener(MediaStartedListener listener) {
-		return addListener(MediaStartedEvent.class, listener, MediaStartedListener.MEDIA_STARTED_METHOD);
-	}
-	
-	/**
-	 * Add a new MediaPausedListener
-	 * The MediaPausedEvent event is fired when media playback is paused either by user or programmatically
-	 *  
-	 * @param listener A MediaPausedListener to be added
-	 */
-	public Registration addMediaPausedListener(MediaPausedListener listener) {
-		return addListener(MediaPausedEvent.class, listener, MediaPausedListener.MEDIA_PAUSED_METHOD);
-	}
-
+   
 }

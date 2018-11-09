@@ -10,6 +10,8 @@ public interface GwtAudioClientRpc extends ClientRpc {
     
     public void stop();
 
+    public void pause();
+    
 	void requestInitialData();
 	
 	void setVolume(double volume);

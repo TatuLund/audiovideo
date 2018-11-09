@@ -9,6 +9,8 @@ public interface GwtVideoClientRpc extends ClientRpc {
     public void setPosition(double time);
     
     public void stop();
+    
+    public void pause();
 
 	public void requestInitialData();
 

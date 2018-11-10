@@ -117,6 +117,14 @@ public class GwtVideoConnector extends MediaBaseConnector {
         	if (timer != null) timer.cancel();
         	setTimer();
         }
+        
+        if (stateChangeEvent.hasPropertyChanged("width")) {
+    		getWidget().setAutoResize(getState().width.isEmpty() && getState().height.isEmpty());
+        }
+               
+        if (stateChangeEvent.hasPropertyChanged("height")) {
+    		getWidget().setAutoResize(getState().width.isEmpty() && getState().height.isEmpty());
+        }
                
     }
 

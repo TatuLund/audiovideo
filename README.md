@@ -48,6 +48,11 @@ Debugging client side code in the gwtav-demo project:
  
 ## Release notes
 
+### Version 1.2.1
+- Suppressed harmless exception on Tomcat
+- Fixed video auto resizing to be disabled if size is set, see: https://github.com/vaadin/framework/issues/5136
+- Added ContentLengthConnectorResource
+
 ### Version 1.2.0
 - Add support for MediaSeekedEvent
 - Report position to server always when new position is set by user

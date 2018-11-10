@@ -30,6 +30,9 @@ public class GwtAudio extends AbstractAudioVideo {
 	
 	/**
 	 * Create a new GwtAudio using given resource
+     * 
+     * Note: StreamResource does not know Content-Length, use {@link ContentLengthConnectorResource}
+     * if you know the Content-Length form other source
 	 * 
 	 * @param resource A resource
 	 */
@@ -48,6 +51,9 @@ public class GwtAudio extends AbstractAudioVideo {
 	
 	/**
 	 * Create a new GwtAudio using given resource and caption
+     * 
+     * Note: StreamResource does not know Content-Length, use {@link ContentLengthConnectorResource}
+     * if you know the Content-Length form other source
 	 * 
 	 * @param resource A resource
 	 * @param caption A caption as a String
@@ -144,6 +150,12 @@ public class GwtAudio extends AbstractAudioVideo {
     
     /**
      * Set the new position
+     * 
+     * Note: This works only if the resource knows the Content-Length or if the external url is served
+     * from a server that supports range requests.
+     * 
+     * Note: StreamResource does not know Content-Length, use {@link ContentLengthConnectorResource}
+     * if you know the Content-Length form other source
      * 
      * @param time Position offset in seconds
      */

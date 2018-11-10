@@ -6,6 +6,7 @@ import com.google.gwt.event.dom.client.ProgressHandler;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.media.client.Video;
 import com.google.gwt.media.dom.client.MediaError;
+import com.vaadin.client.Profiler;
 import com.vaadin.client.Util;
 import com.vaadin.client.VConsole;
 import com.vaadin.client.ui.VMediaBase;
@@ -16,6 +17,7 @@ public class GwtVideoWidget extends VMediaBase {
 	Video video = null;
 	GwtVideoConnector connector = null;
 	private String url;
+	private boolean autoResize = true;
 	
     public GwtVideoWidget() {
     	video = Video.createIfSupported();
@@ -162,15 +164,21 @@ public class GwtVideoWidget extends VMediaBase {
      * @param h
      */
     private void updateElementDynamicSize(int w, int h) {
-        getElement().getStyle().setWidth(w, Unit.PX);
-        getElement().getStyle().setHeight(h, Unit.PX);
-        Util.notifyParentOfSizeChange(this, true);
+    	if (autoResize) {
+    		getElement().getStyle().setWidth(w, Unit.PX);
+    		getElement().getStyle().setHeight(h, Unit.PX);
+    		Util.notifyParentOfSizeChange(this, true);
+    	}
         // Send relevant metadata also to server
         connector.sendInitialData();
     }
 
 	public void setConnector(GwtVideoConnector gwtVideoConnector) {
 		connector = gwtVideoConnector;		
+	}
+
+	public void setAutoResize(boolean autoResize) {
+		this.autoResize = autoResize;		
 	}
     
 }

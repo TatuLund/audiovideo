@@ -100,6 +100,7 @@ public abstract class AbstractAudioVideo extends AbstractMedia {
     public boolean handleConnectorRequest(VaadinRequest request,
             VaadinResponse response, String path) throws IOException {
 
+    	// Handle Range header
         long rangeStart = 0;
         long rangeEnd = -1;
         String header = request.getHeader("Range");
@@ -141,6 +142,7 @@ public abstract class AbstractAudioVideo extends AbstractMedia {
             session.unlock();
         }
 
+        // If stream has Content-Length we can support range requests, add response header
         if (stream.getParameter("Content-Length") != null) response.setHeader("Accept-Ranges", "bytes");
         IOUtil.writeResponse(request, response, stream, rangeStart, rangeEnd);
         return true;

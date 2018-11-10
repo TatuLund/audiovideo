@@ -13,6 +13,12 @@ import com.vaadin.server.DownloadStream;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinResponse;
 
+/**
+ * Implementation of range request support when Content-Length is known. Used internally.
+ * 
+ * @author Tatu Lund
+ *
+ */
 public class IOUtil {
     
     public static void writeResponse(VaadinRequest request, VaadinResponse response, DownloadStream stream, long rangeStart, long rangeEnd)
@@ -66,10 +72,11 @@ public class IOUtil {
                 final byte[] buffer = new byte[bufferSize];
                 int bytesRead = 0;
 
+                // Calculate range that is going to be served if this was range request
                 long bytesToWrite = -1;
-                data.skip(rangeStart);
+                data.skip(rangeStart); // Skip to start offset of the request
                 if (rangeStart > 0 || rangeEnd > 0) {
-                	response.setStatus(206);
+                	response.setStatus(206); // 206 response code needed since this is partial data
                 	long contentLength = Long.parseLong(stream.getParameter("Content-Length"));
                 	if (rangeEnd == -1) rangeEnd = contentLength-1;
                 	response.setHeader("Content-Range", "bytes "+rangeStart+"-"+rangeEnd+"/"+contentLength);
@@ -77,9 +84,10 @@ public class IOUtil {
 					response.setHeader("Content-Length", ""+bytesToWrite);
                 }
                 out = response.getOutputStream();
-
+                
                 long totalWritten = 0;
                 while ((bytesToWrite == -1 || totalWritten < bytesToWrite) && (bytesRead = data.read(buffer)) > 0) {
+                	// Check if this was last part, hence possibly less
                 	if (bytesToWrite != -1) {
                 		bytesRead = (int) Math.min(bytesRead, bytesToWrite - totalWritten);
                 	}
@@ -92,11 +100,13 @@ public class IOUtil {
                     }
                 }
             } catch (EOFException ignore) {
-            	// Swallow
+        		// Browser aborts when it notices that range requests are supported
+            	// Swallow e.g. Jetty
             } catch (IOException e) {
-            	String name = e.getCause().getClass().getSimpleName();
-            	if (name.equals("ClientAbortException")) {
-            		// Swallow
+            	String name = e.getClass().getName();
+            	if (name.equals("org.apache.catalina.connector.ClientAbortException")) {
+            		// Browser aborts when it notices that range requests are supported
+            		// Swallow e.g. Tomcat
             	} else {
             		throw e;
             	}

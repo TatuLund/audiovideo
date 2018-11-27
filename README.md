@@ -1,4 +1,7 @@
-# GwtVideo Add-on for Vaadin 8
+[![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/audiovideo)
+[![Stars on Vaadin Directory](https://img.shields.io/vaadin-directory/star/audiovideo.svg)](https://vaadin.com/directory/component/audiovideo)
+
+# AudioVideo Add-on for Vaadin 8
 
 AudioVideo is a UI component add-on for Vaadin 8. It consists of GwtAudio and GwtVideo components which are replacements
 for Vaadin Audio and Video components with more API features and events.

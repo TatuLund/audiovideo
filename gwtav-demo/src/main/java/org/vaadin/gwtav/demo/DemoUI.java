@@ -1,6 +1,7 @@
 package org.vaadin.gwtav.demo;
 
 import org.apache.commons.io.FileUtils;
+import org.vaadin.gwtav.ContentLengthConnectorResource;
 import org.vaadin.gwtav.GwtAudio;
 import org.vaadin.gwtav.GwtVideo;
 
@@ -10,15 +11,17 @@ import java.io.IOException;
 
 import javax.servlet.annotation.WebServlet;
 
+import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.server.FileResource;
+import com.vaadin.server.ClassResource;
 import com.vaadin.server.StreamResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.shared.ui.PreloadMode;
+import com.vaadin.shared.ui.ui.Transport;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
@@ -30,6 +33,7 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
+@Push
 @Theme("demo")
 @Title("GwtVideo Add-on Demo")
 @SuppressWarnings("serial")
@@ -55,11 +59,13 @@ public class DemoUI extends UI
         tabsheet.setSizeFull();
         
         setContent(tabsheet);
+        UI.getCurrent().getPushConfiguration().setTransport(Transport.WEBSOCKET_XHR);
     }
 
 	private VerticalLayout videoDemo() {
 		final GwtVideo video = new GwtVideo("A Video");
 		video.setPreload(PreloadMode.NONE);
+		video.setWidth("800px");
 		
         // Show it in the middle of the screen
         final VerticalLayout layout = new VerticalLayout();
@@ -69,17 +75,9 @@ public class DemoUI extends UI
         layout.setSpacing(false);
         layout.addComponent(video);
         layout.setComponentAlignment(video, Alignment.MIDDLE_CENTER);
-        // Replace valid file here
-//        File videoFile = new File("C:/Users/Tatu/test.mp4");        
-        File videoFile = new File("C:/Users/Tatu/big_buck_bunny.mp4");        
-        if (videoFile != null) { 
-        	FileResource videoResource = new FileResource(videoFile);
-        	video.setSource(videoResource);
-//        	video.setSource(getStreamResource(videoFile,"video.mp4","video/mp4"));
-//        	video.setSource("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
-        } else {
-        	System.out.println("File not found");
-        }
+       	ClassResource videoResource = new ClassResource("/big_buck_bunny.mp4");
+       	long length = 5510872;
+       	video.setSource(new ContentLengthConnectorResource(videoResource,length));
 
         HorizontalLayout controls = new HorizontalLayout();
 
@@ -192,15 +190,9 @@ public class DemoUI extends UI
         layout.addComponent(audio);
         layout.setComponentAlignment(audio, Alignment.MIDDLE_CENTER);
         // Replace valid file here
-        File audioFile = new File("C:/Users/Tatu/test.mp3");        
-        if (audioFile != null) { 
-        	FileResource audioResource = new FileResource(audioFile);
-        	audio.setSource(audioResource);
-//        	audio.setSource(getStreamResource(audioFile,"audio.mp3","audio/mpeg"));
-//        	audio.setSource("http://file-examples.com/wp-content/uploads/2017/11/file_example_WAV_10MG.wav");
-        } else {
-        	System.out.println("File not found");
-        }
+       	ClassResource audioResource = new ClassResource("/test.mp3");
+       	long length = 725240;
+       	audio.setSource(new ContentLengthConnectorResource(audioResource,length));
 
         HorizontalLayout controls = new HorizontalLayout();
 

@@ -174,6 +174,22 @@ public class GwtAudio extends AbstractAudioVideo {
     }
     
     /**
+     * Set disabled controls
+     * 
+     * @param controls List of disabled controls
+     */
+    public void setControlsList(Control... controls) {
+    	String controlsList="";
+    	int i = 0;
+    	for (Control control : controls) {
+    		if (i == 0) controlsList+=control.toString();
+    		else controlsList+=" "+control.toString();
+    		i++;
+    	}
+    	getRpc().setControlsList(controlsList);
+    }
+    
+   /**
      * Get currently set volume, or -1 if the default value
      * 
      * @return The currently set volume

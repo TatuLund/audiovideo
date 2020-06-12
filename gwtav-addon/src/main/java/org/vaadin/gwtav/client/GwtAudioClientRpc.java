@@ -12,8 +12,10 @@ public interface GwtAudioClientRpc extends ClientRpc {
 
     public void pause();
     
-	void requestInitialData();
+    public void requestInitialData();
 	
-	void setVolume(double volume);
+    public void setVolume(double volume);
+
+	public void setControlsList(String controlsList);
 
 }

@@ -16,4 +16,6 @@ public interface GwtVideoClientRpc extends ClientRpc {
 
 	public void setVolume(double volume);
 
+	public void setControlsList(String controlsList);
+
 }

@@ -47,6 +47,11 @@ public class GwtAudioConnector extends MediaBaseConnector {
 			}
 
 			@Override
+			public void setControlsList(String controlsList) {
+				getWidget().setControlsList(controlsList);				
+			}
+
+			@Override
 			public void pause() {
 				getWidget().pause();
 				getRpc().reportPosition(getWidget().getPosition());
@@ -99,7 +104,6 @@ public class GwtAudioConnector extends MediaBaseConnector {
         	if (timer != null) timer.cancel();
         	setTimer();
         }
-               
     }
 
 	public void sendInitialData() {

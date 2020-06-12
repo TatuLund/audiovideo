@@ -35,6 +35,13 @@ public class GwtVideoWidget extends VMediaBase {
         // State is set to widget in GwtVideoConnector
     }
 
+    @Override
+    protected void onDetach() {
+    	super.onDetach();
+    	pause();
+    	setAutoplay(false);
+    }
+    
     public double getDuration() {
     	return video.getDuration();
     }
@@ -42,7 +49,11 @@ public class GwtVideoWidget extends VMediaBase {
     public void setVolume(double volume) {
     	video.setVolume(volume);
     }
-    
+
+    public void setControlsList(String controlsList) {
+   		video.getMediaElement().setAttribute("controlsList", controlsList);
+    }
+   
     public double getInitialPosition() {
     	return video.getInitialTime();
     }

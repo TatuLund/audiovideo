@@ -36,10 +36,21 @@ public class GwtAudioWidget extends VMediaBase {
         // State is set to widget in GwtVideoConnector
     }
 
+    @Override
+    protected void onDetach() {
+    	super.onDetach();
+    	pause();
+    	setAutoplay(false);
+    }
+
     public void setVolume(double volume) {
     	audio.setVolume(volume);
     }
-    
+
+    public void setControlsList(String controlsList) {
+    	audio.getMediaElement().setAttribute("controlsList", controlsList);
+    }
+   
     public double getDuration() {
     	return audio.getDuration();
     }

@@ -51,6 +51,10 @@ Debugging client side code in the gwtav-demo project:
  
 ## Release notes
 
+### Version 1.3.0
+- Added support for controlsList attribute.
+- Added pause on detach, see https://github.com/vaadin/framework/issues/5662
+
 ### Version 1.2.1
 - Suppressed harmless exception on Tomcat
 - Fixed video auto resizing to be disabled if size is set, see: https://github.com/vaadin/framework/issues/5136

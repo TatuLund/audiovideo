@@ -60,6 +60,11 @@ public class GwtVideoConnector extends MediaBaseConnector {
 			}
 
 			@Override
+			public void setControlsList(String controlsList) {
+				getWidget().setControlsList(controlsList);				
+			}
+
+			@Override
 			public void pause() {
 				getWidget().pause();
 				getRpc().reportPosition(getWidget().getPosition());

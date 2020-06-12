@@ -2,6 +2,7 @@ package org.vaadin.gwtav.demo;
 
 import org.apache.commons.io.FileUtils;
 import org.vaadin.gwtav.ContentLengthConnectorResource;
+import org.vaadin.gwtav.Control;
 import org.vaadin.gwtav.GwtAudio;
 import org.vaadin.gwtav.GwtVideo;
 
@@ -66,7 +67,8 @@ public class DemoUI extends UI
 		final GwtVideo video = new GwtVideo("A Video");
 		video.setPreload(PreloadMode.NONE);
 		video.setWidth("800px");
-		
+		video.setControlsList(Control.NODOWNLOAD,Control.NOFULLSCREEN);
+
         // Show it in the middle of the screen
         final VerticalLayout layout = new VerticalLayout();
         layout.setStyleName("demoContentLayout");

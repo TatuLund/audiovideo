@@ -5,7 +5,7 @@
 	<groupId>org.vaadin</groupId>
 	<artifactId>gwtav-demo</artifactId>
 	<packaging>war</packaging>
-	<version>1.3.0</version>
+	<version>1.3.1</version>
 	<name>AudioVideo Demo</name>
 
 	<prerequisites>
@@ -17,7 +17,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<vaadin.version>8.14.1</vaadin.version>
-		<vaadin.plugin.version>8.6.0</vaadin.plugin.version>
+		<vaadin.plugin.version>8.14.1</vaadin.plugin.version>
 		<jetty.plugin.version>9.3.9.v20160517</jetty.plugin.version>
 	</properties>
 
@@ -139,7 +139,14 @@
 					<scanIntervalSeconds>2</scanIntervalSeconds>
 				</configuration>
 			</plugin>
-
+			<plugin>
+				<groupId>org.wildfly.plugins</groupId>
+				<artifactId>wildfly-maven-plugin</artifactId>
+				<version>2.0.0.Final</version>
+				<configuration>
+					<version>15.0.0.Final</version>
+				</configuration>
+			</plugin>
 		</plugins>
 
 	</build>

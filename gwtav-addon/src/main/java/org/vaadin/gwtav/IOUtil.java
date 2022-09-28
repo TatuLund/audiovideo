@@ -103,13 +103,8 @@ public class IOUtil {
         		// Browser aborts when it notices that range requests are supported
             	// Swallow e.g. Jetty
             } catch (IOException e) {
-            	String name = e.getClass().getName();
-            	if (name.equals("org.apache.catalina.connector.ClientAbortException")) {
-            		// Browser aborts when it notices that range requests are supported
-            		// Swallow e.g. Tomcat
-            	} else {
-            		throw e;
-            	}
+          		// Browser aborts when it notices that range requests are supported
+           		// Swallow e.g. Tomcat, Wildfly
             } finally {
             	tryToCloseStream(out);
             	tryToCloseStream(data);

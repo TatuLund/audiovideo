@@ -96,7 +96,16 @@ public class DemoUI extends UI
         volume.addValueChangeListener(event -> {
         	video.setVolume(volume.getValue()/100.0d);
         });
-        
+
+        Slider rate = new Slider();
+        rate.setMax(2.0d);
+        rate.setMin(0.0d);
+        rate.setValue(1.0);
+        rate.setResolution(1);
+        rate.addValueChangeListener(event -> {
+        	video.setPlaybackRate(rate.getValue());
+        });
+
         Label posLabel = new Label("Position: "+video.getPosition()+"/"+video.getVideoLength());
         Button playBtn = new Button(VaadinIcons.PLAY.getHtml());
         playBtn.setCaptionAsHtml(true);
@@ -131,7 +140,7 @@ public class DemoUI extends UI
         	else loopBtn.setStyleName(ValoTheme.BUTTON_QUIET);
         });        
 
-        controls.addComponents(posLabel,playBtn,stopBtn,pauseBtn,muteBtn,loopBtn,new Label("Pos: "),slider,new Label("Vol: "),volume);
+        controls.addComponents(posLabel,playBtn,stopBtn,pauseBtn,muteBtn,loopBtn,new Label("Pos: "),slider,new Label("Vol: "),volume, new Label("Rate: "), rate);
         controls.setStyleName(ValoTheme.LAYOUT_CARD);
         controls.setCaption("Controls");
         layout.addComponent(controls);
@@ -158,7 +167,8 @@ public class DemoUI extends UI
         	Notification.show("Video ready - Length: "+video.getVideoLength()+"s Width: "+video.getVideoWidth()+"px Height: "+video.getVideoHeight()+"px");
         	posLabel.setValue("Position: "+video.getPosition()+"/"+video.getVideoLength());
         });
-		return layout;
+
+        return layout;
 	}
 
 	public static ByteArrayInputStream reteriveByteArrayInputStream(File file) {
@@ -211,7 +221,16 @@ public class DemoUI extends UI
         volume.addValueChangeListener(event -> {
         	audio.setVolume(volume.getValue()/100.0d);
         });
-        
+ 
+        Slider rate = new Slider();
+        rate.setMax(2.0d);
+        rate.setMin(0.0d);
+        rate.setValue(1.0);
+        rate.setResolution(1);
+        rate.addValueChangeListener(event -> {
+        	audio.setPlaybackRate(rate.getValue());
+        });
+
         Label posLabel = new Label("Position: "+audio.getPosition()+"/"+audio.getAudioLength());
         Button playBtn = new Button(VaadinIcons.PLAY.getHtml());
         playBtn.setCaptionAsHtml(true);
@@ -246,7 +265,7 @@ public class DemoUI extends UI
         	else loopBtn.setStyleName(ValoTheme.BUTTON_QUIET);
         });        
 
-        controls.addComponents(posLabel,playBtn,stopBtn,pauseBtn,muteBtn,loopBtn,new Label("Pos: "),slider,new Label("Vol: "),volume);
+        controls.addComponents(posLabel,playBtn,stopBtn,pauseBtn,muteBtn,loopBtn,new Label("Pos: "),slider,new Label("Vol: "),volume, new Label("Rate: "), rate);
         controls.setStyleName(ValoTheme.LAYOUT_CARD);
         controls.setCaption("Controls");
         layout.addComponent(controls);

@@ -83,6 +83,10 @@ public class GwtAudioWidget extends VMediaBase {
     	return audio.getCurrentTime();
     }
     
+    public void setPlaybackRate(double rate) {
+    	audio.setPlaybackRate(rate);
+    }
+
     /**
      *
      */

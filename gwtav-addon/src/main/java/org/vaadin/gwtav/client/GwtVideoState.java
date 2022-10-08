@@ -6,5 +6,6 @@ public class GwtVideoState extends AbstractMediaState {
 
 	public static final String SOURCE_RESOURCE = "source";
 	public int reportingInterval = 250;
-    
+	public double playbackRate = 1.0;
+
 }

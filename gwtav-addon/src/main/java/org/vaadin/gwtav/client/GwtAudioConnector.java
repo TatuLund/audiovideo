@@ -104,6 +104,10 @@ public class GwtAudioConnector extends MediaBaseConnector {
         	if (timer != null) timer.cancel();
         	setTimer();
         }
+        
+        if (stateChangeEvent.hasPropertyChanged("playbackRate")) {
+        	getWidget().setPlaybackRate(getState().playbackRate);
+        }
     }
 
 	public void sendInitialData() {

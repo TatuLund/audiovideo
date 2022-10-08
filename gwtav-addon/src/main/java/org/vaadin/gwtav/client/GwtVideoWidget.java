@@ -191,5 +191,9 @@ public class GwtVideoWidget extends VMediaBase {
 	public void setAutoResize(boolean autoResize) {
 		this.autoResize = autoResize;		
 	}
-    
+
+    public void setPlaybackRate(double rate) {
+    	video.setPlaybackRate(rate);
+    }
+
 }

@@ -248,5 +248,13 @@ public class GwtAudio extends AbstractAudioVideo {
     	return getRpcProxy(GwtAudioClientRpc.class);
     }
 
+    /**
+     * Set playback rate factor 1.0 = normal speed, slower 0 .. 1, faster 1+
+     * 
+     * @param rate double value
+     */
+    public void setPlaybackRate(double rate) {
+    	getState().playbackRate = rate;
+    }
 }
 
